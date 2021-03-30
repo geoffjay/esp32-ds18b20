@@ -1,0 +1,6 @@
+*~
+*.sw[op]
+
+.env
+
+/assets/firmware/
