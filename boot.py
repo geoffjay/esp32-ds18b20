@@ -1,11 +1,8 @@
 import esp
 import network
-import os
-import webrepl
+# import webrepl
 
-# TODO: put these in a secrets file
-WLAN_SSID = os.getenv("WLAN_SSID")
-WLAN_PASS = os.getenv("WLAN_PASS")
+from secrets import WLAN_SSID, WLAN_PASS
 
 
 def do_connect():
@@ -20,6 +17,5 @@ def do_connect():
 
 
 esp.osdebug(None)
-
 do_connect()
-webrepl.start()
+# webrepl.start()

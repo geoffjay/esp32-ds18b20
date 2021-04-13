@@ -2,5 +2,8 @@
 *.sw[op]
 
 .env
+secrets.py
 
 /assets/firmware/
+
+__pycache__/
