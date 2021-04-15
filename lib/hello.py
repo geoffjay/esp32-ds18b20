@@ -3,7 +3,9 @@ import onewire
 import time
 import tinyweb
 
-from machine import Pin
+from machine import I2C, Pin
+
+import chirp
 
 
 # Create web server application
@@ -47,6 +49,22 @@ async def temperature(request, response):
 
     await response.start_html()
     await response.send("<html><body><p>Temperature: {}</p></body></html>\n".format(reading))
+
+
+@app.route("/moisture")
+async def moisture(request, response):
+    i2c = I2C(scl=Pin(22), sda=Pin(21), freq=300000)
+    sensor = chirp.Chirp(bus=i2c, address=0x20)
+
+    await response.start_html()
+    await response.send("""
+        <html>
+            <body>
+                <p>Moisture: {}</p>
+                <p>Temperature: {}</p>
+            </body>
+        </html>
+    """.format(sensor.moisture, sensor.temperature))
 
 
 def run():
